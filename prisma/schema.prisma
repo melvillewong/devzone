@@ -92,7 +92,7 @@ model Follows {
   following User @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
 
   @@index([followerId, followingId])
-  @@id([followerId, followingId]) // composite primary key prevents deplicate follows
+  @@id([followerId, followingId]) // composite primary key prevents duplicate follows
 }
 
 model Notification {
