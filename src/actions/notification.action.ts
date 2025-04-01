@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { getDbUserId } from "./user.action";
+import { revalidatePath } from "next/cache";
 
 export async function getNotifications() {
   try {
@@ -61,6 +62,7 @@ export async function markNotificationsAsRead(notificationIds: string[]) {
       },
     });
 
+    revalidatePath("@/component/DesktopNavbar");
     return { success: true };
   } catch (error) {
     console.error("Error marking notifications as read:", error);
